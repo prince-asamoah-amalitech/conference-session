@@ -1,0 +1,30 @@
+<div class="ui-container py-8">
+  <header class="flex flex-wrap items-start justify-between gap-4">
+    <div>
+      <h1 class="ui-page-title">Sessions</h1>
+      <p class="ui-page-subtitle">Browse, search and manage the conference schedule.</p>
+    </div>
+    <a class="ui-btn ui-btn-primary" routerLink="/sessions/new">New session</a>
+  </header>
+
+  <label class="ui-field mt-6">
+    <span class="ui-label">Search sessions</span>
+    <input
+      class="ui-input"
+      type="search"
+      name="q"
+      placeholder="Search by title, track or speaker"
+      [value]="q()"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </label>
+
+  <p class="ui-hint mt-2">
+    {{ results().length }} session{{ results().length === 1 ? '' : 's' }}
+    @if (q()) {
+      matching &ldquo;{{ q() }}&rdquo;
+    }
+  </p>
+
+  <app-session-list [sessions]="results()" />
+</div>

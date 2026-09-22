@@ -1,0 +1,11 @@
+/* ============================================================
+   AmaliTech Design System — Semantic THEME tokens (4 modes).
+   Generated from tokens/_src/*.tokens.json (Figma exports).
+   Default (:root) = Light Mode (Dark Blue). Opt into another mode with
+   data-ueds-mode on ANY element: "light-orange" | "dark" | "dark-blue".
+   To update: replace the JSON in tokens/_src/ and re-run the generator.
+   ============================================================ */
+@import './themes/light-dark-blue.css';
+@import './themes/light-orange.css';
+@import './themes/dark.css';
+@import './themes/dark-blue.css';

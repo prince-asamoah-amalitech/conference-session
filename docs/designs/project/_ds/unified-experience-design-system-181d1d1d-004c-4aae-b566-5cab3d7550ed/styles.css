@@ -1,0 +1,39 @@
+/* ============================================================
+   AmaliTech Design System — global stylesheet entry point.
+   Consumers link THIS file. It is an @import manifest only.
+   ============================================================ */
+
+/* Webfonts */
+@import './tokens/fonts.css';
+
+/* Curated, human-facing tokens (use these in product code) */
+@import './tokens/colors.css';     /* ← ALL colors live here (single source of truth) */
+@import './tokens/themes.css';     /* ← Semantic per-mode theme tokens (4 modes, generated) */
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/effects.css';
+
+/* Numeric / sizing scales from the Figma variable export (no colors). */
+@import './tokens/dimensions.css';
+
+/* ------------------------------------------------------------
+   Base link treatment — links carry no underline at rest and
+   ALWAYS underline on hover/focus. Colour comes from the theme
+   link token (falls back to the primary accent).
+   ------------------------------------------------------------ */
+a { color: var(--text-link, var(--primary-600)); text-decoration: none; }
+a:hover, a:focus-visible { text-decoration: underline !important; text-underline-offset: 2px; }
+
+/* ------------------------------------------------------------
+   Shared scrollbar treatment — the ONE standard scrollbar for
+   every component. Default (auto) width, transparent track,
+   themed thumb (rounded, inset by a transparent border). Dark
+   surfaces get a darker thumb via the theme scopes.
+   ------------------------------------------------------------ */
+:root { scrollbar-color: var(--border-default, #B2BCC2) transparent; }
+::-webkit-scrollbar { width: 15px; height: 15px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--border-default, #B2BCC2); border-radius: 999px; border: 4px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--dark-blue-300, #5A6F7C); background-clip: padding-box; }
+:root[data-theme="dark"], :root[data-theme="dark-blue"], [data-ueds-mode="dark"], [data-ueds-mode="dark-blue"] { scrollbar-color: var(--gray-600, #383835) transparent; }
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb, :root[data-theme="dark-blue"] ::-webkit-scrollbar-thumb, [data-ueds-mode="dark"] ::-webkit-scrollbar-thumb, [data-ueds-mode="dark-blue"] ::-webkit-scrollbar-thumb { background-color: var(--gray-600, #383835); background-clip: padding-box; }

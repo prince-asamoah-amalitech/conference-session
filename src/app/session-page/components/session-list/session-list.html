@@ -1,0 +1,52 @@
+@if (sessions().length === 0) {
+  <div class="ui-card mt-4 p-10 text-center">
+    <p class="ui-section-title">No sessions found</p>
+    <p class="ui-page-subtitle">Try a different search term, or create a new session.</p>
+  </div>
+} @else {
+  <div class="ui-card mt-4 overflow-x-auto">
+    <table class="ui-table">
+      <caption class="sr-only">Conference sessions</caption>
+      <thead>
+        <tr>
+          <th class="ui-th rounded-tl-xl" scope="col">Session</th>
+          <th class="ui-th" scope="col">Track</th>
+          <th class="ui-th" scope="col">When</th>
+          <th class="ui-th rounded-tr-xl text-right" scope="col">Capacity</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (session of sessions(); track session.id) {
+          <tr class="ui-tr" (click)="open(session)">
+            <td class="ui-td">
+              <a
+                class="font-medium text-content hover:text-navy-600"
+                [routerLink]="['/sessions', session.id]"
+                (click)="$event.stopPropagation()"
+              >
+                {{ session.title }}
+              </a>
+              <p class="ui-td-secondary m-0 mt-0.5">{{ speakerNames(session) }}</p>
+            </td>
+
+            <td class="ui-td">
+              <span class="ui-badge" [class]="trackBadgeClass(session.track)">
+                <span class="ui-badge-dot"></span>
+                {{ session.track }}
+              </span>
+            </td>
+
+            <td class="ui-td ui-td-secondary whitespace-nowrap">
+              {{ session.startsAt | date: 'EEE d MMM' }}
+              <span class="block">
+                {{ session.startsAt | date: 'HH:mm' }} &ndash; {{ session.endsAt | date: 'HH:mm' }}
+              </span>
+            </td>
+
+            <td class="ui-td text-right tabular-nums">{{ session.capacity }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

@@ -1,0 +1,527 @@
+/* ============================================================
+   AmaliTech — Dimension tokens (sizing / numeric scales)
+   Generated from the Figma variable export; COLOR tokens have been
+   moved to tokens/colors.css (the single source of truth for color).
+   FLOAT tokens are unitless — multiply by 1px in calc() where needed.
+   ============================================================ */
+
+/* Generated from Figma Variables. First mode = :root default. FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */ :root {
+  --0-2: 0; /* @kind other */
+  --0-5-2: 2; /* @kind other */
+  --0-5-3: 2; /* @kind other */
+  --0-5: 2; /* @kind other */
+  --0: 0; /* @kind other */
+  --1-2: 4; /* @kind other */
+  --1-3: 4; /* @kind other */
+  --1-5: 6; /* @kind other */
+  --10: 40; /* @kind other */
+  --11-2: 44; /* @kind other */
+  --11: 44; /* @kind other */
+  --12-2: 48; /* @kind other */
+  --12: 48; /* @kind other */
+  --14-2: 56; /* @kind other */
+  --14: 56; /* @kind other */
+  --16-2: 16; /* @kind other */
+  --16-3: 16; /* @kind other */
+  --16: 64; /* @kind other */
+  --1: 4; /* @kind other */
+  --2-2: 8; /* @kind other */
+  --2-3: 8; /* @kind other */
+  --2-5-2: 10; /* @kind other */
+  --2-5-3: 10; /* @kind other */
+  --2-5: 10; /* @kind other */
+  --20: 80; /* @kind other */
+  --24-2: 24; /* @kind other */
+  --24: 96; /* @kind other */
+  --28: 112; /* @kind other */
+  --2: 8; /* @kind other */
+  --2xl: 1536; /* @kind other */
+  --3-2: 12; /* @kind other */
+  --3-3: 12; /* @kind other */
+  --3-5-2: 14; /* @kind other */
+  --3-5: 14; /* @kind other */
+  --32: 128; /* @kind other */
+  --36: 144; /* @kind other */
+  --3: 12; /* @kind other */
+  --4-2: 16; /* @kind other */
+  --4-3: 16; /* @kind other */
+  --40: 160; /* @kind other */
+  --44-2: 176; /* @kind other */
+  --44-3: 176; /* @kind other */
+  --44: 176; /* @kind other */
+  --48: 192; /* @kind other */
+  --4: 16; /* @kind other */
+  --5-2: 20; /* @kind other */
+  --5-3: 20; /* @kind other */
+  --52-2: 208; /* @kind other */
+  --52: 208; /* @kind other */
+  --56: 224; /* @kind other */
+  --5: 20; /* @kind other */
+  --6-2: 24; /* @kind other */
+  --60: 240; /* @kind other */
+  --64-2: 256; /* @kind other */
+  --64: 256; /* @kind other */
+  --6: 24; /* @kind other */
+  --72: 288; /* @kind other */
+  --7: 28; /* @kind other */
+  --8-2: 32; /* @kind other */
+  --8-3: 32; /* @kind other */
+  --80-2: 320; /* @kind other */
+  --80-3: 320; /* @kind other */
+  --80: 320; /* @kind other */
+  --8: 32; /* @kind other */
+  --9-2: 36; /* @kind other */
+  --9: 36; /* @kind other */
+  --boarder-radius-small-2: 8; /* @kind other */
+  --boarder-radius-small: 8; /* @kind other */
+  --body-2: "Noto Sans"; /* @kind font */
+  --body: "Inter"; /* @kind font */
+  --border-border-radius-button: var(--border-radius-200);
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded-lg);
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded-xl-2);
+  --border-border-radius-rounded-base: var(--border-border-radius-rounded-xl);
+  --border-border-radius-rounded-full-2: var(--border-border-radius-rounded-full);
+  --border-border-radius-rounded-full-3: 9999; /* @kind other */
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full: 9999; /* @kind other */
+  --border-border-radius-rounded-lg: 8; /* @kind other */
+  --border-border-radius-rounded-md-2: 6; /* @kind other */
+  --border-border-radius-rounded-md: 6; /* @kind other */
+  --border-border-radius-rounded-sm-2: var(--border-border-radius-rounded-md-2);
+  --border-border-radius-rounded-sm: var(--border-border-radius-rounded-md);
+  --border-border-radius-rounded-xl-2: 12; /* @kind other */
+  --border-border-radius-rounded-xl: 12; /* @kind other */
+  --border-border-radius-rounded: 4; /* @kind other */
+  --border-border-width-border-2-2: 2; /* @kind other */
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-3: 1; /* @kind other */
+  --border-border-width-border-4: 4; /* @kind other */
+  --border-border-width-border-5: var(--border-border-width-border-3);
+  --border-border-width-border-lg: var(--border-border-width-border-4);
+  --border-border-width-border-md: var(--border-border-width-border-2-2);
+  --border-border-width-border: 1; /* @kind other */
+  --border-radius-200: var(--size-200);
+  --border-radius-small: 8; /* @kind other */
+  --container-lg-2: var(--container-lg);
+  --container-lg: 1024; /* @kind other */
+  --container-xs: 380; /* @kind other */
+  --desktop: 1286; /* @kind other */
+  --font-family-font-sans-2: "Inter";
+  --font-family-font-sans: "Inter";
+  --font-size-2lg: 36; /* @kind other */
+  --font-size-2md-2: 32; /* @kind other */
+  --font-size-2md: 32; /* @kind other */
+  --font-size-2xl: 24; /* @kind other */
+  --font-size-2xs: 24; /* @kind other */
+  --font-size-4md: 64; /* @kind other */
+  --font-size-4xs: 48; /* @kind other */
+  --font-size-8md: 128; /* @kind other */
+  --font-size-8xs: 96; /* @kind other */
+  --font-size-base: 16; /* @kind other */
+  --font-size-body-lg: 18; /* @kind other */
+  --font-size-body-md: 16; /* @kind other */
+  --font-size-body-sm: 14; /* @kind other */
+  --font-size-body-xl: 24; /* @kind other */
+  --font-size-heading-lg: 56; /* @kind other */
+  --font-size-heading-md: 48; /* @kind other */
+  --font-size-heading-mh4: var(--font-size-body-lg);
+  --font-size-heading-xs: 32; /* @kind other */
+  --font-size-lg-2: 18; /* @kind other */
+  --font-size-lg: 18; /* @kind other */
+  --font-size-md: 16; /* @kind other */
+  --font-size-sm-2: 14; /* @kind other */
+  --font-size-sm-3: 14; /* @kind other */
+  --font-size-sm: 14; /* @kind other */
+  --font-size-xl: 20; /* @kind other */
+  --font-size-xs-2: 12; /* @kind other */
+  --font-size-xs: 12; /* @kind other */
+  --font-size-xxs: 8; /* @kind other */
+  --gaps-space-between-2xl: 24; /* @kind other */
+  --gaps-space-between-2xs: 4; /* @kind other */
+  --gaps-space-between-3xl: 32; /* @kind other */
+  --gaps-space-between-3xs: 2; /* @kind other */
+  --gaps-space-between-4xl: 40; /* @kind other */
+  --gaps-space-between-lg: 16; /* @kind other */
+  --gaps-space-between-md: 12; /* @kind other */
+  --gaps-space-between-sm: 8; /* @kind other */
+  --gaps-space-between-xl: 20; /* @kind other */
+  --header-2: "Noto Sans"; /* @kind font */
+  --header: "Poppins"; /* @kind font */
+  --letter-spacing-base: 0; /* @kind other */
+  --lg: 1024; /* @kind other */
+  --line-height-2lg: 46.8; /* @kind other */
+  --line-height-2md: 41.6; /* @kind other */
+  --line-height-2xs: 31.2; /* @kind other */
+  --line-height-4md: 83.2; /* @kind other */
+  --line-height-4xs: 62.4; /* @kind other */
+  --line-height-8md: 166.4; /* @kind other */
+  --line-height-8xs: 124.8; /* @kind other */
+  --line-height-lg: 23.4; /* @kind other */
+  --line-height-lh-1: 48; /* @kind other */
+  --line-height-lh-4: 32; /* @kind other */
+  --line-height-lh-6: 24; /* @kind other */
+  --line-height-lh-8: 20; /* @kind other */
+  --line-height-lh-9: 16; /* @kind other */
+  --line-height-md: 20.8; /* @kind other */
+  --line-height-sm: 18.2; /* @kind other */
+  --line-height-xl: 26; /* @kind other */
+  --line-height-xs: 15.6; /* @kind other */
+  --line-height-xxs: 10.4; /* @kind other */
+  --max-w-2xl: 672; /* @kind other */
+  --max-w-3xl: 768; /* @kind other */
+  --max-w-4xl: 896; /* @kind other */
+  --max-w-5xl: 1024; /* @kind other */
+  --max-w-6xl: 1152; /* @kind other */
+  --max-w-7xl: 1280; /* @kind other */
+  --max-w-lg: 512; /* @kind other */
+  --max-w-md: 448; /* @kind other */
+  --max-w-sm: 384; /* @kind other */
+  --max-w-xl: 576; /* @kind other */
+  --max-w-xs: 320; /* @kind other */
+  --max-width-max-w-5xl-2: var(--max-width-max-w-5xl);
+  --max-width-max-w-5xl: 1024; /* @kind other */
+  --md: 768; /* @kind other */
+  --padding-4: 4; /* @kind other */
+  --px: 1; /* @kind other */
+  --radius-1: 8; /* @kind other */
+  --radius-2: 4; /* @kind other */
+  --radius-2l: 40; /* @kind other */
+  --radius-2xs: 2; /* @kind other */
+  --radius-4: 8; /* @kind other */
+  --radius-full-2: 999; /* @kind other */
+  --radius-full: 999; /* @kind other */
+  --radius-s-2: 8; /* @kind other */
+  --radius-s: 8; /* @kind other */
+  --radius-sharp: 0; /* @kind other */
+  --radius-sm: 8; /* @kind other */
+  --radius-xs: 4; /* @kind other */
+  --rounded-2: 4; /* @kind other */
+  --rounded-2xl: 16; /* @kind other */
+  --rounded-3xl: 24; /* @kind other */
+  --rounded-full-2: 9999; /* @kind other */
+  --rounded-full-3: 9999; /* @kind other */
+  --rounded-full: 999; /* @kind other */
+  --rounded-lg-2: 8; /* @kind other */
+  --rounded-lg-3: 8; /* @kind other */
+  --rounded-lg: 8; /* @kind other */
+  --rounded-md-2: 6; /* @kind other */
+  --rounded-md: 6; /* @kind other */
+  --rounded-sm: 2; /* @kind other */
+  --rounded-xl: 12; /* @kind other */
+  --rounded: 4; /* @kind other */
+  --size-150: 6; /* @kind other */
+  --size-200: 8; /* @kind other */
+  --size-300: 12; /* @kind other */
+  --sm: 640; /* @kind other */
+  --space-150: var(--size-150);
+  --space-300: var(--size-300);
+  --spacing-0-2: 0; /* @kind other */
+  --spacing-0-5-2: 2; /* @kind other */
+  --spacing-0-5: 2; /* @kind other */
+  --spacing-0: 0; /* @kind other */
+  --spacing-1-2: 4; /* @kind other */
+  --spacing-1-3: 4; /* @kind other */
+  --spacing-1-5-2: 6; /* @kind other */
+  --spacing-1-5: 6; /* @kind other */
+  --spacing-10-2: 40; /* @kind other */
+  --spacing-10: 40; /* @kind other */
+  --spacing-11-2: 44; /* @kind other */
+  --spacing-11: 44; /* @kind other */
+  --spacing-12-2: 48; /* @kind other */
+  --spacing-12: 48; /* @kind other */
+  --spacing-14: 56; /* @kind other */
+  --spacing-16: 64; /* @kind other */
+  --spacing-1: 8; /* @kind other */
+  --spacing-2-2: 8; /* @kind other */
+  --spacing-2-3: 8; /* @kind other */
+  --spacing-2-5-2: 10; /* @kind other */
+  --spacing-2-5: 10; /* @kind other */
+  --spacing-2: 16; /* @kind other */
+  --spacing-3-2: 12; /* @kind other */
+  --spacing-3-5-2: 14; /* @kind other */
+  --spacing-3-5: 14; /* @kind other */
+  --spacing-3: 12; /* @kind other */
+  --spacing-3xl: 40; /* @kind other */
+  --spacing-4-2: 16; /* @kind other */
+  --spacing-4-5-2: 18; /* @kind other */
+  --spacing-4-5: 18; /* @kind other */
+  --spacing-4: 16; /* @kind other */
+  --spacing-5-2: 20; /* @kind other */
+  --spacing-56: 224; /* @kind other */
+  --spacing-5: 20; /* @kind other */
+  --spacing-6-2: 24; /* @kind other */
+  --spacing-6-3: 24; /* @kind other */
+  --spacing-6: 24; /* @kind other */
+  --spacing-7: 28; /* @kind other */
+  --spacing-8-2: 32; /* @kind other */
+  --spacing-8: 32; /* @kind other */
+  --spacing-9-2: 36; /* @kind other */
+  --spacing-9: 36; /* @kind other */
+  --spacing-l-2: 24; /* @kind other */
+  --spacing-l: 24; /* @kind other */
+  --spacing-lg: 16; /* @kind other */
+  --spacing-m-2: 16; /* @kind other */
+  --spacing-m-3: 24; /* @kind other */
+  --spacing-m: 16; /* @kind other */
+  --spacing-margin-2xl: 24; /* @kind other */
+  --spacing-margin-2xs: 4; /* @kind other */
+  --spacing-margin-4xl: 40; /* @kind other */
+  --spacing-margin-external: 80; /* @kind other */
+  --spacing-margin-lg: 16; /* @kind other */
+  --spacing-margin-md: 12; /* @kind other */
+  --spacing-margin-sm: 8; /* @kind other */
+  --spacing-margin-xl: 20; /* @kind other */
+  --spacing-padding-section-padding: var(--spacing-l-2);
+  --spacing-radius-2: 8; /* @kind other */
+  --spacing-s-2: 8; /* @kind other */
+  --spacing-s-3: 16; /* @kind other */
+  --spacing-s: 8; /* @kind other */
+  --spacing-sm-2: 8; /* @kind other */
+  --spacing-sm: 8; /* @kind other */
+  --spacing-xl: 48; /* @kind other */
+  --spacing-xs-2: 8; /* @kind other */
+  --spacing-xs-3: 4; /* @kind other */
+  --spacing-xs: 4; /* @kind other */
+  --static-title-medium-line-height: 24; /* @kind other */
+  --static-title-medium-tracking: 0.15; /* @kind other */
+  --stroke-m: 4; /* @kind other */
+  --table-countselected: 0; /* @kind other */
+  --text-desktop-b-1: 16; /* @kind other */
+  --text-desktop-h-3: 24; /* @kind other */
+  --text-mobile-mb-1: 14; /* @kind other */
+  --typeface-body: "Inter";
+  --typeface-family-display: "Inter";
+  --typeface-family-text: "Inter";
+  --typeface-header: "Poppins";
+  --typeface-size-text-lg: 18; /* @kind other */
+  --typeface-size-text-md: 16; /* @kind other */
+  --typeface-size-text-sm: 14; /* @kind other */
+  --typeface-size-text-xl: 20; /* @kind other */
+  --typeface-size-text-xs: 12; /* @kind other */
+  --typography-font-family-font-base-2: var(--font-family-font-sans-2);
+  --typography-font-family-font-base: var(--font-family-font-sans);
+  --typography-font-size-text-2xl: var(--font-size-2xl);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-lg: var(--font-size-lg-2);
+  --typography-font-size-text-sm-2: var(--font-size-sm-3);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-5-2: var(--spacing-5-2);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --xl: 1280; /* @kind other */
+}
+
+:root[data-theme="dark"], .dark {
+  --border-border-radius-rounded-2: 10; /* @kind other */
+  --border-border-radius-rounded-2: 1; /* @kind other */
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded);
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded-lg);
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded-md);
+  --border-border-radius-rounded-base-2: 1; /* @kind other */
+  --border-border-radius-rounded-base-2: 20; /* @kind other */
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded);
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded-lg);
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded-xl-2);
+  --border-border-radius-rounded-base: var(--border-border-radius-rounded-xl);
+  --border-border-radius-rounded-full-2: var(--border-border-radius-rounded-full);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-sm-2: var(--border-border-radius-rounded-md-2);
+  --border-border-radius-rounded-sm: 10; /* @kind other */
+  --border-border-radius-rounded-sm: 1; /* @kind other */
+  --border-border-radius-rounded-sm: 1; /* @kind other */
+  --border-border-radius-rounded-sm: var(--border-border-radius-rounded);
+  --border-border-radius-rounded-sm: var(--border-border-radius-rounded-md);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-5: var(--border-border-width-border-3);
+  --border-border-width-border-lg: var(--border-border-width-border-4);
+  --border-border-width-border-md: var(--border-border-width-border-2-2);
+  --container-lg-2: var(--container-lg);
+  --container-xs: 380; /* @kind other */
+  --max-width-max-w-5xl-2: var(--max-width-max-w-5xl);
+  --spacing-sm: 8; /* @kind other */
+  --typography-font-family-font-base-2: var(--font-family-font-sans-2);
+  --typography-font-family-font-base: var(--font-family-font-sans);
+  --typography-font-size-text-2xl: var(--font-size-2xl);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-lg: var(--font-size-lg-2);
+  --typography-font-size-text-sm-2: var(--font-size-sm-3);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-5-2: var(--spacing-5-2);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+}
+
+:root[data-theme="light"], .light {
+  --border-border-radius-rounded-2: 10; /* @kind other */
+  --border-border-radius-rounded-2: 1; /* @kind other */
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded);
+  --border-border-radius-rounded-2: var(--border-border-radius-rounded-md);
+  --border-border-radius-rounded-base-2: 1; /* @kind other */
+  --border-border-radius-rounded-base-2: 20; /* @kind other */
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded);
+  --border-border-radius-rounded-base-2: var(--border-border-radius-rounded-lg);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-full-4: var(--border-border-radius-rounded-full-3);
+  --border-border-radius-rounded-sm: 10; /* @kind other */
+  --border-border-radius-rounded-sm: 1; /* @kind other */
+  --border-border-radius-rounded-sm: 1; /* @kind other */
+  --border-border-radius-rounded-sm: var(--border-border-radius-rounded);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --border-border-width-border-2: var(--border-border-width-border);
+  --typography-font-family-font-base: var(--font-family-font-sans);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-base: var(--font-size-base);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-sm: var(--font-size-sm-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-font-size-text-xs: var(--font-size-xs-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-4: var(--spacing-4-2);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-5: var(--spacing-5);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+  --typography-line-height-leading-6: var(--spacing-6-2);
+}
+
+:root[data-mode="mode-2"] {
+  --padding-4: 4; /* @kind other */
+}
+
+:root[data-mode="tablet"] {
+  --desktop: 720; /* @kind other */
+  --font-size-body-lg: 18; /* @kind other */
+  --font-size-body-md: 16; /* @kind other */
+  --font-size-body-sm: 14; /* @kind other */
+  --font-size-body-xl: 24; /* @kind other */
+  --font-size-heading-lg: 48; /* @kind other */
+  --font-size-heading-md: 40; /* @kind other */
+  --font-size-heading-mh4: 18; /* @kind other */
+  --font-size-heading-xs: 24; /* @kind other */
+  --gaps-space-between-2xl: 16; /* @kind other */
+  --gaps-space-between-2xs: 2; /* @kind other */
+  --gaps-space-between-3xl: 20; /* @kind other */
+  --gaps-space-between-3xs: 2; /* @kind other */
+  --gaps-space-between-4xl: 24; /* @kind other */
+  --gaps-space-between-lg: 8; /* @kind other */
+  --gaps-space-between-md: 6; /* @kind other */
+  --gaps-space-between-sm: 6; /* @kind other */
+  --gaps-space-between-xl: 12; /* @kind other */
+  --radius-2xs: 2; /* @kind other */
+  --radius-full: 999; /* @kind other */
+  --radius-sharp: 0; /* @kind other */
+  --radius-sm: 8; /* @kind other */
+  --radius-xs: 4; /* @kind other */
+  --spacing-margin-2xl: 16; /* @kind other */
+  --spacing-margin-2xs: 4; /* @kind other */
+  --spacing-margin-4xl: 24; /* @kind other */
+  --spacing-margin-external: 64; /* @kind other */
+  --spacing-margin-lg: 8; /* @kind other */
+  --spacing-margin-md: 6; /* @kind other */
+  --spacing-margin-sm: 6; /* @kind other */
+  --spacing-margin-xl: 12; /* @kind other */
+}
+
+:root[data-mode="mobile"] {
+  --desktop: 320; /* @kind other */
+  --font-size-body-lg: 16; /* @kind other */
+  --font-size-body-md: 14; /* @kind other */
+  --font-size-body-sm: 12; /* @kind other */
+  --font-size-body-xl: 18; /* @kind other */
+  --font-size-heading-lg: 28; /* @kind other */
+  --font-size-heading-md: 24; /* @kind other */
+  --font-size-heading-mh4: 18; /* @kind other */
+  --font-size-heading-xs: 18; /* @kind other */
+  --gaps-space-between-2xl: 12; /* @kind other */
+  --gaps-space-between-2xs: 2; /* @kind other */
+  --gaps-space-between-3xl: 16; /* @kind other */
+  --gaps-space-between-3xs: 2; /* @kind other */
+  --gaps-space-between-4xl: 20; /* @kind other */
+  --gaps-space-between-lg: 6; /* @kind other */
+  --gaps-space-between-md: 4; /* @kind other */
+  --gaps-space-between-sm: 4; /* @kind other */
+  --gaps-space-between-xl: 8; /* @kind other */
+  --radius-2xs: 2; /* @kind other */
+  --radius-full: 999; /* @kind other */
+  --radius-sharp: 0; /* @kind other */
+  --radius-sm: 4; /* @kind other */
+  --radius-xs: 2; /* @kind other */
+  --spacing-margin-2xl: 12; /* @kind other */
+  --spacing-margin-2xs: 2; /* @kind other */
+  --spacing-margin-4xl: 16; /* @kind other */
+  --spacing-margin-external: 48; /* @kind other */
+  --spacing-margin-lg: 6; /* @kind other */
+  --spacing-margin-md: 4; /* @kind other */
+  --spacing-margin-sm: 6; /* @kind other */
+  --spacing-margin-xl: 8; /* @kind other */
+}
+
+:root[data-mode="expanded-4"] {
+  --16-2: 20; /* @kind other */
+  --16-3: 20; /* @kind other */
+  --24-2: 28; /* @kind other */
+}
+
+:root[data-mode="expanded-8"] {
+  --16-2: 24; /* @kind other */
+  --16-3: 24; /* @kind other */
+  --24-2: 32; /* @kind other */
+}
+
+:root[data-mode="condensed-4"] {
+  --16-2: 12; /* @kind other */
+  --16-3: 12; /* @kind other */
+  --24-2: 20; /* @kind other */
+}
+

@@ -1,3 +1,261 @@
-/* You can add global styles to this file, and also import other style files */
+/* AmaliTech brand webfonts: Poppins (display) + Inter (body/UI). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
 
 @import 'tailwindcss';
+
+/* Design tokens live in tailwind.config.js (mirrors the handoff design system). */
+@config '../tailwind.config.js';
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-page font-body text-base text-content;
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+
+  /* Design-system link treatment: no underline at rest, always on hover/focus. */
+  a {
+    @apply text-navy-600 no-underline;
+  }
+
+  a:hover,
+  a:focus-visible {
+    @apply underline underline-offset-2;
+  }
+
+  :root {
+    scrollbar-color: #b2bcc2 transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-stroke-medium;
+    border: 4px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+@layer components {
+  /* ---- Layout ---------------------------------------------------- */
+  .ui-container {
+    @apply mx-auto w-full max-w-container px-4 sm:px-6;
+  }
+
+  .ui-card {
+    @apply rounded-xl border border-stroke-light bg-surface shadow-sm;
+  }
+
+  .ui-appbar {
+    @apply w-full bg-navy-500 text-content-inverse;
+  }
+
+  .ui-appbar-title {
+    @apply font-display text-base font-bold tracking-tight text-content-inverse no-underline;
+  }
+
+  .ui-appbar-title:hover {
+    @apply no-underline;
+  }
+
+  /* ---- Table ----------------------------------------------------- */
+  /* Mirrors the design system Table/TableCell: #E6EAEB header, --border-subtle
+     dividers, 14px/16px cell padding, 48px rows, 12px outer radius. */
+  .ui-table {
+    @apply w-full border-collapse text-left font-body;
+  }
+
+  .ui-th {
+    @apply bg-navy-50 px-4 py-3 text-xs font-semibold uppercase tracking-wide
+      text-content-secondary;
+  }
+
+  .ui-td {
+    @apply border-t border-stroke-light px-4 py-3.5 align-middle text-sm text-content;
+  }
+
+  .ui-td-secondary {
+    @apply text-[13px] text-content-secondary;
+  }
+
+  .ui-tr {
+    @apply cursor-pointer bg-surface transition-colors duration-base ease-standard
+      hover:bg-surface-hover;
+  }
+
+  /* ---- Segmented control (track picker) -------------------------- */
+  .ui-segment {
+    @apply inline-flex cursor-pointer items-center rounded-lg border border-stroke-medium
+      bg-surface px-4 py-2 font-body text-sm font-medium capitalize text-content-secondary
+      transition-colors duration-base ease-standard hover:bg-navy-50
+      has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue-200;
+  }
+
+  .ui-segment-active {
+    @apply border-navy-500 bg-navy-500 text-content-inverse hover:bg-navy-800;
+  }
+
+  /* ---- Typography ------------------------------------------------ */
+  .ui-page-title {
+    @apply font-display text-3xl font-bold tracking-tight text-navy-800;
+  }
+
+  .ui-page-subtitle {
+    @apply mt-1 text-sm text-content-secondary;
+  }
+
+  .ui-section-title {
+    @apply font-display text-lg font-semibold text-navy-800;
+  }
+
+  /* ---- Buttons --------------------------------------------------- */
+  .ui-btn {
+    @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg
+      border border-transparent px-[18px] py-2.5 font-body text-sm font-semibold
+      no-underline transition-colors duration-base ease-standard
+      focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200;
+  }
+
+  .ui-btn:hover {
+    @apply no-underline;
+  }
+
+  .ui-btn-primary {
+    @apply bg-navy-500 text-content-inverse hover:bg-navy-800 active:bg-navy-600;
+  }
+
+  .ui-btn-secondary {
+    @apply border-navy-700 bg-surface text-navy-700 hover:bg-navy-50;
+  }
+
+  .ui-btn-ghost {
+    @apply text-navy-700 hover:bg-navy-50;
+  }
+
+  /* Filled destructive action (DS buttons-filled-red-*). */
+  .ui-btn-danger {
+    @apply bg-red-700 text-content-inverse hover:bg-red-800 active:bg-red-600;
+  }
+
+  /* Neutral outline (DS buttons-outline-gray-*), the DS pop-up's cancel action. */
+  .ui-btn-neutral {
+    @apply border-gray-700 bg-surface text-gray-700 hover:bg-gray-50;
+  }
+
+  .ui-btn-danger-ghost {
+    @apply border-red-700 bg-surface text-red-700 hover:bg-red-50;
+  }
+
+  .ui-btn:disabled {
+    @apply cursor-not-allowed border-light-500 bg-light-300 text-light-500 hover:bg-light-300;
+  }
+
+  .ui-btn-sm {
+    @apply px-3.5 py-2 text-sm;
+  }
+
+  /* ---- Form controls --------------------------------------------- */
+  .ui-field {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .ui-label {
+    @apply font-body text-sm font-medium text-content;
+  }
+
+  .ui-input {
+    @apply w-full rounded-lg border border-stroke-medium bg-surface px-3.5 py-2.5
+      font-body text-sm text-content shadow-xs transition duration-base ease-standard
+      placeholder:text-content-placeholder
+      focus:border-blue-500 focus:outline-none;
+  }
+
+  .ui-input-invalid {
+    @apply border-red-700 focus:border-red-700;
+  }
+
+  .ui-select {
+    @apply w-full appearance-none rounded-lg border border-stroke-medium bg-surface
+      py-2.5 pl-3.5 pr-10 font-body text-sm text-content shadow-xs bg-no-repeat
+      transition duration-base ease-standard
+      focus:border-blue-500 focus:outline-none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A6F7C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-position: right 12px center;
+  }
+
+  .ui-error {
+    @apply flex items-center gap-1 font-body text-xs font-medium text-red-700;
+  }
+
+  .ui-hint {
+    @apply font-body text-xs text-content-secondary;
+  }
+
+  /* ---- Badges / chips -------------------------------------------- */
+  .ui-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1
+      font-body text-xs font-medium capitalize;
+  }
+
+  .ui-badge-navy {
+    @apply border-navy-100 bg-navy-50 text-navy-500;
+  }
+
+  .ui-badge-orange {
+    @apply border-orange-100 bg-orange-50 text-orange-800;
+  }
+
+  .ui-badge-blue {
+    @apply border-blue-100 bg-blue-50 text-blue-800;
+  }
+
+  .ui-badge-green {
+    @apply border-green-200 bg-green-50 text-green-800;
+  }
+
+  .ui-badge-purple {
+    @apply border-purple-200 bg-purple-50 text-purple-800;
+  }
+
+  .ui-badge-dot {
+    @apply h-2 w-2 shrink-0 rounded-full bg-current;
+  }
+
+  .ui-badge-navy .ui-badge-dot {
+    @apply bg-navy-500;
+  }
+
+  .ui-badge-orange .ui-badge-dot {
+    @apply bg-orange-600;
+  }
+
+  .ui-badge-blue .ui-badge-dot {
+    @apply bg-blue-600;
+  }
+
+  .ui-badge-green .ui-badge-dot {
+    @apply bg-green-500;
+  }
+
+  .ui-badge-purple .ui-badge-dot {
+    @apply bg-purple-600;
+  }
+}

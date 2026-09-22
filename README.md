@@ -1,59 +1,110 @@
-# ConferenceSessions
+# Conference Sessions
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.5.
+A small Angular admin area for managing conference sessions: browse and search a schedule,
+create a session, and edit an existing one — with form validation, a variable number of
+speakers, and an unsaved-changes warning on navigation.
 
-## Development server
+Built with Angular 22 (standalone components, signals), Tailwind CSS v4, and Vitest.
+There is no backend; data lives in memory and resets on reload.
 
-To start a local development server, run:
+Repository: <https://github.com/prince-asamoah-amalitech/conference-session>
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Getting started
 
 ```bash
-ng generate component component-name
+git clone https://github.com/prince-asamoah-amalitech/conference-session.git
+cd conference-session
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Then open http://localhost:4200/. `/` redirects to `/sessions`.
 
-```bash
-ng generate --help
+## Scripts
+
+| Command         | What it does                         |
+| --------------- | ------------------------------------ |
+| `npm start`     | Dev server with hot reload           |
+| `npm run build` | Production build into `dist/`        |
+| `npm run watch` | Development build, rebuilt on change |
+| `npm test`      | Unit tests (Vitest + jsdom)          |
+
+## Routes
+
+| Route                | Page                                                                   |
+| -------------------- | ---------------------------------------------------------------------- |
+| `/sessions`          | Session list, search box, "New session" button                         |
+| `/sessions?q=<term>` | The same list, filtered — the term is shareable and survives a refresh |
+| `/sessions/new`      | Empty form in create mode                                              |
+| `/sessions/:id`      | Edit form for one session                                              |
+| anything else        | Not Found                                                              |
+
+Everything under `/sessions` is lazily loaded, and each route within it loads its own
+component.
+
+## How it works
+
+**Search lives in the URL.** `SessionPage` reads `q` as a routed input (the router is
+configured with `withComponentInputBinding()`), and typing replaces the current history
+entry rather than pushing a new one. That is what makes the filtered view both
+refresh-proof and shareable. Matching is case-insensitive across title, track and speaker
+name or email.
+
+**One form, two modes.** `CreateSession` and `EditSession` share `SessionFormBase`, which
+owns the reactive form, the speakers `FormArray`, and the validation rules:
+
+- title — required, 120 characters max
+- track — one of `frontend`, `backend`, `ai`
+- starts/ends — both required, and the end must be strictly after the start (a cross-field
+  validator)
+- capacity — a whole number from 1 to 10,000
+- speakers — at least one; each needs a name and a valid email
+
+ISO timestamps are converted to and from the local value a `datetime-local` input expects,
+so times round-trip through the form unchanged.
+
+**Unsaved changes block navigation.** A `canDeactivate` guard calls into the routed
+component. If the form is dirty, the component opens `SaveChangesDialog` and returns a
+promise that stays pending until the user chooses to stay or discard. Submitting marks the
+form pristine, so saving and leaving does not prompt.
+
+**Data.** `SessionService` wraps an in-memory `signal<Session[]>` seeded from
+`session-page/data/session.data.ts` and exposes `all`, `count`, `search`, `getById`,
+`create`, `update` and `remove`. Its API is fixed by the brief.
+
+## Project layout
+
+```
+src/app/
+  app.config.ts            providers: router (+ component input binding), HttpClient
+  app.routes.ts            root routes; lazy-loads the session area
+  session-page/
+    session.routes.ts      routes for the lazy feature area
+    session-page.*         the list page
+    model/session.model.ts Session + Speaker
+    data/session.data.ts   seed data
+    services/session.ts    SessionService
+    guards/
+      unsaved-changes-guard.ts
+    components/
+      session-form.base.ts shared form logic for create + edit
+      create-session/
+      edit-session/
+      session-list/
+      save-changes-dialog/
+      page-not-found/
 ```
 
-## Building
+## Styling
 
-To build the project run:
+Tailwind v4, entered through `src/styles.css`. Design tokens live in `tailwind.config.js`
+and mirror the handoff design system, so components use semantic names
+(`bg-surface`, `text-content-secondary`, `border-stroke-light`) rather than raw hex values.
+Reusable recipes — `ui-btn`, `ui-input`, `ui-card`, `ui-badge`, `ui-table` — are defined as
+component classes in `src/styles.css`.
 
-```bash
-ng build
-```
+## Documentation
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `docs/README.md` — functional requirements and the design handoff
+- `AGENTS.md` — conventions and gotchas for anyone (or any agent) changing the code
+- `tasks.md` — the original brief
