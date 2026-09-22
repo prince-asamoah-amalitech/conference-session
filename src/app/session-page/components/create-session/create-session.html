@@ -9,136 +9,103 @@
   </div>
 
   <form class="ui-card mt-6 p-6" [formGroup]="form" (ngSubmit)="submit()">
-      <div class="grid gap-5">
-        <label class="ui-field">
-          <span class="ui-label">Title</span>
-          <input
-            class="ui-input"
-            [class.ui-input-invalid]="isInvalid(form.controls.title)"
-            type="text"
-            placeholder="e.g. Zoneless Angular in production"
-            formControlName="title"
-          />
-          @if (isInvalid(form.controls.title)) {
-            <small class="ui-error">A title of at most 120 characters is required.</small>
-          }
-        </label>
+    <div class="grid gap-5">
+      <app-ui-input
+        [control]="form.controls.title"
+        name="title"
+        label="Title"
+        placeholder="e.g. Zoneless Angular in production"
+        errorText="A title of at most 120 characters is required."
+      />
 
-        <div class="ui-field">
-          <span class="ui-label">Track</span>
-          <div class="flex flex-wrap gap-2" role="radiogroup" aria-label="Track">
-            @for (track of tracks; track track) {
-              <label
-                class="ui-segment"
-                [class.ui-segment-active]="form.controls.track.value === track"
-              >
-                <input class="sr-only" type="radio" [value]="track" formControlName="track" />
-                {{ track }}
-              </label>
-            }
-          </div>
-        </div>
+      <app-ui-segment-group [control]="form.controls.track" [options]="tracks" label="Track" />
 
-        <div class="grid gap-5 sm:grid-cols-2">
-          <label class="ui-field">
-            <span class="ui-label">Starts at</span>
-            <input
-              class="ui-input"
-              [class.ui-input-invalid]="isInvalid(form.controls.startsAt)"
-              type="datetime-local"
-              formControlName="startsAt"
-            />
-            @if (isInvalid(form.controls.startsAt)) {
-              <small class="ui-error">A start time is required.</small>
-            }
-          </label>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <app-ui-input
+          [control]="form.controls.startsAt"
+          name="startsAt"
+          label="Starts at"
+          type="datetime-local"
+          errorText="A start time is required."
+        />
 
-          <label class="ui-field">
-            <span class="ui-label">Ends at</span>
-            <input
-              class="ui-input"
-              [class.ui-input-invalid]="isInvalid(form.controls.endsAt)"
-              type="datetime-local"
-              formControlName="endsAt"
-            />
-            @if (isInvalid(form.controls.endsAt)) {
-              <small class="ui-error">An end time is required.</small>
-            }
-          </label>
-        </div>
-
-        @if (form.touched && form.hasError('endBeforeStart')) {
-          <small class="ui-error">The end time must come after the start time.</small>
-        }
-
-        <label class="ui-field">
-          <span class="ui-label">Capacity</span>
-          <input
-            class="ui-input"
-            [class.ui-input-invalid]="isInvalid(form.controls.capacity)"
-            type="number"
-            min="1"
-            max="10000"
-            formControlName="capacity"
-          />
-          @if (isInvalid(form.controls.capacity)) {
-            <small class="ui-error">Capacity must be a whole number between 1 and 10000.</small>
-          }
-        </label>
-
-        <fieldset class="m-0 border-0 p-0" formArrayName="speakers">
-          <legend class="ui-label mb-2 p-0">Speakers</legend>
-
-          <div class="flex flex-col gap-3">
-            @for (speaker of speakers.controls; track $index; let i = $index) {
-              <div class="flex flex-col gap-2 sm:flex-row sm:items-start" [formGroupName]="i">
-                <div class="ui-field flex-1">
-                  <input
-                    class="ui-input"
-                    [class.ui-input-invalid]="isInvalid(speaker.get('name'))"
-                    type="text"
-                    placeholder="Name"
-                    formControlName="name"
-                  />
-                  @if (isInvalid(speaker.get('name'))) {
-                    <small class="ui-error">A speaker name is required.</small>
-                  }
-                </div>
-
-                <div class="ui-field flex-1">
-                  <input
-                    class="ui-input"
-                    [class.ui-input-invalid]="isInvalid(speaker.get('email'))"
-                    type="email"
-                    placeholder="Email"
-                    formControlName="email"
-                  />
-                  @if (isInvalid(speaker.get('email'))) {
-                    <small class="ui-error">A valid email address is required.</small>
-                  }
-                </div>
-
-                <button
-                  class="ui-btn ui-btn-danger-ghost ui-btn-sm sm:mt-0.5"
-                  type="button"
-                  (click)="removeSpeaker(i)"
-                  [disabled]="speakers.length === 1"
-                >
-                  Remove
-                </button>
-              </div>
-            }
-          </div>
-
-          <button class="ui-btn ui-btn-ghost ui-btn-sm mt-3" type="button" (click)="addSpeaker()">
-            + Add speaker
-          </button>
-        </fieldset>
+        <app-ui-input
+          [control]="form.controls.endsAt"
+          name="endsAt"
+          label="Ends at"
+          type="datetime-local"
+          errorText="An end time is required."
+        />
       </div>
 
+      @if (form.touched && form.hasError('endBeforeStart')) {
+        <small class="ui-error" role="alert">The end time must come after the start time.</small>
+      }
+
+      <app-ui-input
+        [control]="form.controls.capacity"
+        name="capacity"
+        label="Capacity"
+        type="number"
+        [min]="1"
+        [max]="10000"
+        errorText="Capacity must be a whole number between 1 and 10000."
+      />
+
+      <fieldset class="m-0 border-0 p-0">
+        <legend class="ui-label mb-2 p-0">Speakers</legend>
+
+        <div class="flex flex-col gap-3">
+          @for (speaker of speakers.controls; track $index; let i = $index) {
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-start">
+              <app-ui-input
+                class="flex-1"
+                [control]="speaker.get('name')"
+                name="name"
+                placeholder="Name"
+                errorText="A speaker name is required."
+              />
+
+              <app-ui-input
+                class="flex-1"
+                [control]="speaker.get('email')"
+                name="email"
+                type="email"
+                placeholder="Email"
+                errorText="A valid email address is required."
+              />
+
+              <button
+                appButton
+                variant="danger-ghost"
+                size="sm"
+                class="sm:mt-0.5"
+                type="button"
+                (click)="removeSpeaker(i)"
+                [disabled]="speakers.length === 1"
+              >
+                Remove
+              </button>
+            </div>
+          }
+        </div>
+
+        <button
+          appButton
+          variant="ghost"
+          size="sm"
+          class="mt-3"
+          type="button"
+          (click)="addSpeaker()"
+        >
+          + Add speaker
+        </button>
+      </fieldset>
+    </div>
+
     <div class="mt-8 flex flex-wrap gap-3">
-      <button class="ui-btn ui-btn-primary" type="submit">Save session</button>
-      <button class="ui-btn ui-btn-secondary" type="button" (click)="cancel()">Cancel</button>
+      <button appButton variant="primary" type="submit">Save session</button>
+      <button appButton variant="secondary" type="button" (click)="cancel()">Cancel</button>
     </div>
   </form>
 </div>

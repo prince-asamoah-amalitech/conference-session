@@ -1,0 +1,25 @@
+<div class="ui-field">
+  @if (label()) {
+    <label class="ui-label" [attr.for]="inputId()">{{ label() }}</label>
+  }
+
+  <input
+    class="ui-input"
+    [class.ui-input-invalid]="invalid()"
+    [id]="inputId()"
+    [attr.name]="name()"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [attr.min]="min()"
+    [attr.max]="max()"
+    [attr.aria-invalid]="invalid()"
+    [attr.aria-describedby]="describedBy()"
+    [formControl]="formControl()"
+  />
+
+  @if (showError()) {
+    <small class="ui-error" [id]="errorId()" role="alert">{{ errorText() }}</small>
+  } @else if (hint()) {
+    <small class="ui-hint" [id]="hintId()">{{ hint() }}</small>
+  }
+</div>

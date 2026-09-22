@@ -106,7 +106,7 @@
     @apply inline-flex cursor-pointer items-center rounded-lg border border-stroke-medium
       bg-surface px-4 py-2 font-body text-sm font-medium capitalize text-content-secondary
       transition-colors duration-base ease-standard hover:bg-navy-50
-      has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-blue-200;
+      has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-blue-200;
   }
 
   .ui-segment-active {
@@ -131,7 +131,7 @@
     @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg
       border border-transparent px-[18px] py-2.5 font-body text-sm font-semibold
       no-underline transition-colors duration-base ease-standard
-      focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-200;
+      focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-blue-200;
   }
 
   .ui-btn:hover {
@@ -174,7 +174,7 @@
 
   /* ---- Form controls --------------------------------------------- */
   .ui-field {
-    @apply flex flex-col gap-1.5;
+    @apply flex flex-col gap-2;
   }
 
   .ui-label {
@@ -182,31 +182,22 @@
   }
 
   .ui-input {
-    @apply w-full rounded-lg border border-stroke-medium bg-surface px-3.5 py-2.5
-      font-body text-sm text-content shadow-xs transition duration-base ease-standard
+    @apply w-full rounded-lg border border-stroke-medium bg-gray-50 px-4 py-3
+      font-body text-sm text-content transition duration-base ease-standard
       placeholder:text-content-placeholder
-      focus:border-blue-500 focus:outline-none;
+      focus:border-navy-800 focus:outline-none;
   }
 
   .ui-input-invalid {
     @apply border-red-700 focus:border-red-700;
   }
 
-  .ui-select {
-    @apply w-full appearance-none rounded-lg border border-stroke-medium bg-surface
-      py-2.5 pl-3.5 pr-10 font-body text-sm text-content shadow-xs bg-no-repeat
-      transition duration-base ease-standard
-      focus:border-blue-500 focus:outline-none;
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A6F7C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
-    background-position: right 12px center;
-  }
-
   .ui-error {
-    @apply flex items-center gap-1 font-body text-xs font-medium text-red-700;
+    @apply flex items-center gap-1 font-body text-sm font-medium text-red-600;
   }
 
   .ui-hint {
-    @apply font-body text-xs text-content-secondary;
+    @apply font-body text-sm text-content-secondary;
   }
 
   /* ---- Badges / chips -------------------------------------------- */

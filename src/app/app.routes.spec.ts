@@ -21,7 +21,9 @@ describe('app routes', () => {
   /** Regression: the router binds `undefined` for an absent query param. */
   it('lists every session at /sessions with no query param', async () => {
     const element = await navigateTo('/sessions');
-    expect(element.querySelectorAll('tbody tr').length).toBe(TestBed.inject(SessionService).count());
+    expect(element.querySelectorAll('tbody tr').length).toBe(
+      TestBed.inject(SessionService).count(),
+    );
   });
 
   it('filters the list from the q query param', async () => {
@@ -39,10 +41,9 @@ describe('app routes', () => {
     const session = TestBed.inject(SessionService).all()[0];
     const element = await navigateTo(`/sessions/${session.id}`);
     expect(element.textContent).toContain('Edit session');
-    expect(element.querySelector('input[formcontrolname="title"]')).toHaveProperty(
-      'value',
-      session.title,
-    );
+    // The field components take their control as an input, so the native input carries
+    // `name` rather than `formControlName`.
+    expect(element.querySelector('input[name="title"]')).toHaveProperty('value', session.title);
   });
 
   it('shows page not found for an unknown url', async () => {

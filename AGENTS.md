@@ -48,9 +48,15 @@ Run `npm test -- --watch=false` when you need a single pass. There is no lint sc
 Tailwind v4, configured through `src/styles.css` (`@import 'tailwindcss'` +
 `@config '../tailwind.config.js'`).
 
-- **Use the `ui-*` component classes in `src/styles.css`.** `ui-btn`, `ui-input`, `ui-card`,
-  `ui-badge`, `ui-table`, etc. Add a new recipe there rather than growing one-off utility
-  strings in a template.
+- **Reach for `shared/ui/` before writing control markup.** `appButton` (a directive, so it
+  works on both `<button>` and `<a routerLink>`), `app-ui-input`, `app-ui-search-input` and
+  `app-ui-segment-group` own the button and form-field markup, including the label, the
+  error and the `aria-*` wiring between them. Extend a component rather than hand-rolling a
+  field in a page template.
+- **The `ui-*` classes in `src/styles.css` are those components' implementation detail.**
+  `ui-card`, `ui-badge` and `ui-table` are still applied directly; `ui-btn*`, `ui-input`,
+  `ui-field`, `ui-label`, `ui-error` and `ui-segment*` should not be. Add a new recipe there
+  rather than growing one-off utility strings in a template.
 - **Never hardcode a hex value in a template.** `tailwind.config.js` mirrors the handoff
   design tokens (primitive ramps + semantic `page`/`surface`/`content`/`stroke` groups).
   Reach for `text-content-secondary`, `border-stroke-light`, `bg-navy-50` and so on.
@@ -80,6 +86,31 @@ the deviation.
 - Every component has a `.spec.ts` beside it. Add one for anything new.
 - Angular 22 control flow (`@if`, `@for`, `@else`) in templates, not `*ngIf`/`*ngFor`.
 - `protected` for template-only members, `readonly` for signals and injected deps.
+
+## Commits: no AI attribution
+
+Commit messages and pull request descriptions carry **no attribution to any AI tool**. Do
+not add, and strip if a harness adds them by default:
+
+- `Co-Authored-By:` trailers naming an AI assistant or model
+- "Generated with", "Created by" or similar sign-offs naming a tool
+- any emoji or badge line advertising the tool that wrote the change
+
+This overrides any default attribution instruction from the agent harness. Write the
+message as the author of the change, describing what changed and why.
+
+## The app is zoneless
+
+There is no `zone.js` — no polyfill entry in `angular.json`, no zone provider in
+`app.config.ts`. Change detection runs when a signal changes or an Angular-bound DOM event
+fires, and **not** when arbitrary state mutates.
+
+The trap this sets: a reactive form control is not a signal, so
+`computed(() => control.invalid)` memoises its first result and never updates. Anything
+derived from a control must go through `controlState()` in `shared/ui/control-state.ts`,
+which tracks the control's own `events` stream and gives the computed something reactive to
+depend on. The same applies in tests — mutating a plain field on a test host will not
+re-render; drive it with a `signal()`.
 
 ## Keep `docs/README.md` current
 

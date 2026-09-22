@@ -7,9 +7,10 @@ import {
   output,
   viewChild,
 } from '@angular/core';
+import { ButtonDirective } from '../../../shared/ui/button/button';
 
 @Component({
-  imports: [],
+  imports: [ButtonDirective],
   selector: 'app-save-changes-dialog',
   styleUrl: './save-changes-dialog.css',
   templateUrl: './save-changes-dialog.html',

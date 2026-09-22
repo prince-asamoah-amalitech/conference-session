@@ -1,0 +1,32 @@
+/* The design system's modal fades its overlay in and scales the panel from 0.96.
+   @starting-style supplies the "before it existed" values, so the animation runs on
+   insertion without the element ever having to exist in a visible-but-wrong state.
+   Browsers without support simply show the dialog immediately. */
+.dialog-overlay {
+  opacity: 1;
+  transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@starting-style {
+  .dialog-overlay {
+    opacity: 0;
+  }
+}
+
+.dialog-panel {
+  transform: scale(1);
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@starting-style {
+  .dialog-panel {
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog-overlay,
+  .dialog-panel {
+    transition: none;
+  }
+}

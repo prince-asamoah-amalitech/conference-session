@@ -1,62 +1,67 @@
 <!-- Mirrors the design-system Modal, type="pop-up" (the confirm/destructive
      pattern): 20px-inset centred overlay, 448px panel with a 16px radius, a
      52px tinted info disc, centred copy capped at 260px, and the destructive
-     action leading the button row. The shell stays mounted so the overlay can
-     fade and the panel can scale in, exactly as the design system does. -->
-<div
-  class="fixed inset-0 z-[80] flex items-center justify-center p-5
-         transition-opacity duration-200 ease-standard"
-  [class.pointer-events-none]="!open()"
-  [class.opacity-0]="!open()"
-  [attr.aria-hidden]="!open()"
-  [attr.inert]="open() ? null : ''"
->
-  <div class="absolute inset-0 bg-[rgba(4,22,32,0.5)]" (click)="stay()"></div>
+     action leading the button row.
 
-  <div
-    class="relative flex max-h-full w-[448px] max-w-[92vw] flex-col rounded-2xl
-           border border-stroke-light bg-surface px-[22px] pb-[22px] pt-6
-           font-body text-content shadow-[0_20px_60px_rgba(4,22,32,0.28)]
-           transition-transform duration-200 ease-standard"
-    [class.scale-95]="!open()"
-    role="alertdialog"
-    aria-modal="true"
-    aria-labelledby="save-changes-title"
-    aria-describedby="save-changes-message"
-  >
-    <h2 class="sr-only" id="save-changes-title">Unsaved changes</h2>
+     The shell is mounted only while open. Keeping it mounted and hiding it with a
+     bound class meant the browser could paint one opaque frame before the binding
+     applied, which read as the dialog flashing up on every page load. The design
+     system's fade and scale are done in CSS with @starting-style instead. -->
+@if (open()) {
+  <div class="dialog-overlay fixed inset-0 z-[80] flex items-center justify-center p-5">
+    <div class="absolute inset-0 bg-[rgba(4,22,32,0.5)]" (click)="stay()"></div>
 
-    <div class="flex flex-col items-center gap-[18px] px-2 pb-1 pt-2.5 text-center">
-      <span class="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-navy-50">
-        <svg
-          width="26"
-          height="26"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
+    <div
+      class="dialog-panel relative flex max-h-full w-[448px] max-w-[92vw] flex-col rounded-2xl border border-stroke-light bg-surface px-[22px] pb-[22px] pt-6 font-body text-content shadow-[0_20px_60px_rgba(4,22,32,0.28)]"
+      role="alertdialog"
+      aria-modal="true"
+      aria-labelledby="save-changes-title"
+      aria-describedby="save-changes-message"
+    >
+      <h2 class="sr-only" id="save-changes-title">Unsaved changes</h2>
+
+      <div class="flex flex-col items-center gap-[18px] px-2 pb-1 pt-2.5 text-center">
+        <span class="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-navy-50">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="12" cy="12" r="9.25" />
+            <path d="M12 11v5" />
+            <circle cx="12" cy="7.6" r="1.1" fill="currentColor" stroke="none" />
+          </svg>
+        </span>
+
+        <p
+          class="max-w-[260px] text-base leading-[1.5] text-content-secondary"
+          id="save-changes-message"
         >
-          <circle cx="12" cy="12" r="9.25" />
-          <path d="M12 11v5" />
-          <circle cx="12" cy="7.6" r="1.1" fill="currentColor" stroke="none" />
-        </svg>
-      </span>
+          {{ message() }}
+        </p>
 
-      <p class="max-w-[260px] text-base leading-[1.5] text-content-secondary" id="save-changes-message">
-        {{ message() }}
-      </p>
-
-      <div class="mt-1 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-        <button class="ui-btn ui-btn-danger w-full" type="button" (click)="leave()">
-          Discard and leave
-        </button>
-        <button #stayButton class="ui-btn ui-btn-neutral w-full" type="button" (click)="stay()">
-          Stay on page
-        </button>
+        <div class="mt-1 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <button appButton variant="danger" class="w-full" type="button" (click)="leave()">
+            Discard and leave
+          </button>
+          <button
+            #stayButton
+            appButton
+            variant="neutral"
+            class="w-full"
+            type="button"
+            (click)="stay()"
+          >
+            Stay on page
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

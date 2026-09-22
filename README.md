@@ -33,7 +33,7 @@ Then open http://localhost:4200/. `/` redirects to `/sessions`.
 
 | Route                | Page                                                                   |
 | -------------------- | ---------------------------------------------------------------------- |
-| `/sessions`          | Session list, search box, "New session" button                         |
+| `/sessions`          | Session list (newest created first), search box, "New session" button  |
 | `/sessions?q=<term>` | The same list, filtered — the term is shareable and survives a refresh |
 | `/sessions/new`      | Empty form in create mode                                              |
 | `/sessions/:id`      | Edit form for one session                                              |
@@ -78,6 +78,12 @@ form pristine, so saving and leaving does not prompt.
 src/app/
   app.config.ts            providers: router (+ component input binding), HttpClient
   app.routes.ts            root routes; lazy-loads the session area
+  shared/ui/               presentational components shared across pages
+    button/                appButton directive (button + anchor)
+    input/                 labelled field: label, input, error/hint
+    search-input/          the search box
+    segment-group/         single-choice segmented control
+    control-state.ts       makes a form control readable from a computed()
   session-page/
     session.routes.ts      routes for the lazy feature area
     session-page.*         the list page
@@ -101,7 +107,9 @@ Tailwind v4, entered through `src/styles.css`. Design tokens live in `tailwind.c
 and mirror the handoff design system, so components use semantic names
 (`bg-surface`, `text-content-secondary`, `border-stroke-light`) rather than raw hex values.
 Reusable recipes — `ui-btn`, `ui-input`, `ui-card`, `ui-badge`, `ui-table` — are defined as
-component classes in `src/styles.css`.
+component classes in `src/styles.css`. Templates mostly do not apply them directly: the
+components in `shared/ui/` own the button and form-control markup, and the `ui-*` classes
+are their implementation detail.
 
 ## Documentation
 

@@ -1,0 +1,32 @@
+<div class="ui-field">
+  @if (hasLabel()) {
+    <label class="ui-label" [attr.for]="inputId">{{ label() }}</label>
+  }
+
+  <div class="relative">
+    <!-- Lucide 'search', the glyph the design system's SearchInput delegates to. -->
+    <svg
+      class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-content-placeholder"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.8"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.34-4.34" />
+    </svg>
+
+    <input
+      class="ui-input pl-10"
+      [id]="inputId"
+      [attr.name]="name()"
+      type="search"
+      [placeholder]="placeholder()"
+      [value]="value()"
+      (input)="onInput($event)"
+    />
+  </div>
+</div>

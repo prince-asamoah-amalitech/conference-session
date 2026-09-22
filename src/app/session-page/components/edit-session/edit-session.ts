@@ -4,9 +4,19 @@ import { Router, RouterLink } from '@angular/router';
 import { SessionFormBase } from '../session-form.base';
 import { SessionService } from '../../services/session';
 import { SaveChangesDialog } from '../save-changes-dialog/save-changes-dialog';
+import { ButtonDirective } from '../../../shared/ui/button/button';
+import { UiInput } from '../../../shared/ui/input/input';
+import { UiSegmentGroup } from '../../../shared/ui/segment-group/segment-group';
 
 @Component({
-  imports: [ReactiveFormsModule, RouterLink, SaveChangesDialog],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    SaveChangesDialog,
+    ButtonDirective,
+    UiInput,
+    UiSegmentGroup,
+  ],
   selector: 'app-edit-session',
   styleUrl: './edit-session.css',
   templateUrl: './edit-session.html',

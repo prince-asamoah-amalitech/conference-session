@@ -33,4 +33,30 @@ describe('SessionPage', () => {
     await fixture.whenStable();
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(1);
   });
+
+  it('lists the most recently created session first', () => {
+    const sessions = TestBed.inject(SessionService);
+    const newest = [...sessions.all()].sort((a, b) => a.id.localeCompare(b.id)).at(-1)!;
+
+    const firstRow = fixture.nativeElement.querySelector('tbody tr');
+    expect(firstRow.textContent).toContain(newest.title);
+  });
+
+  it('puts a newly created session at the top', async () => {
+    const sessions = TestBed.inject(SessionService);
+    const created = sessions.create({
+      title: 'Brand new session',
+      track: 'frontend',
+      startsAt: '2020-01-01T09:00:00.000Z',
+      endsAt: '2020-01-01T10:00:00.000Z',
+      capacity: 10,
+      speakers: [{ name: 'A Speaker', email: 'a@example.com' }],
+    });
+    await fixture.whenStable();
+
+    const firstRow = fixture.nativeElement.querySelector('tbody tr');
+    expect(firstRow.textContent).toContain(created.title);
+
+    sessions.remove(created.id);
+  });
 });

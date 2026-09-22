@@ -6,7 +6,8 @@ The original brief is in `tasks.md`; implementation conventions are in `AGENTS.m
 ## Requirements
 
 - A session page showing a list of sessions on the `/sessions` route, with a search box to
-  filter the sessions and a new session button to create one.
+  filter the sessions and a new session button to create one. The list is ordered newest
+  first, so a session you have just created appears at the top.
 - Refreshing the page should keep the search term in the search input.
 - The link to the search term and its results must be shareable.
 - Clicking a session list item should navigate to the session details on `/sessions/:id`
@@ -29,13 +30,13 @@ The original brief is in `tasks.md`; implementation conventions are in `AGENTS.m
 
 ## Routes
 
-| Route           | Component       | Notes                            |
-| --------------- | --------------- | -------------------------------- |
-| `/`             | —               | Redirects to `/sessions`         |
-| `/sessions`     | `SessionPage`   | Accepts `?q=<term>`              |
-| `/sessions/new` | `CreateSession` | Guarded by `unsavedChangesGuard` |
-| `/sessions/:id` | `EditSession`   | Guarded by `unsavedChangesGuard` |
-| `**`            | `PageNotFound`  |                                  |
+| Route           | Component       | Notes                                     |
+| --------------- | --------------- | ----------------------------------------- |
+| `/`             | —               | Redirects to `/sessions`                  |
+| `/sessions`     | `SessionPage`   | Accepts `?q=<term>`; newest created first |
+| `/sessions/new` | `CreateSession` | Guarded by `unsavedChangesGuard`          |
+| `/sessions/:id` | `EditSession`   | Guarded by `unsavedChangesGuard`          |
+| `**`            | `PageNotFound`  |                                           |
 
 ## Components
 
