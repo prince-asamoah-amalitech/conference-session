@@ -19,7 +19,9 @@ describe('SessionService', () => {
 
   it('filters by title, track and speaker', () => {
     expect(service.search('signals').map((s) => s.id)).toEqual(['s-001']);
-    expect(service.search('ai').every((s) => s.track === 'ai' || s.title.toLowerCase().includes('ai'))).toBe(true);
+    expect(
+      service.search('ai').every((s) => s.track === 'ai' || s.title.toLowerCase().includes('ai')),
+    ).toBe(true);
     expect(service.search('kwame').map((s) => s.id)).toEqual(['s-002']);
   });
 

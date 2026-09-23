@@ -29,6 +29,24 @@ Then open http://localhost:4200/. `/` redirects to `/sessions`.
 | `npm run watch` | Development build, rebuilt on change |
 | `npm test`      | Unit tests (Vitest + jsdom)          |
 
+## Docker
+
+```bash
+docker build -t conference-sessions .
+docker run --rm -p 8080:80 conference-sessions
+```
+
+Then open http://localhost:8080/. The image is a multi-stage build: Node compiles the
+production bundle, and nginx serves it (`nginx.conf`) with an `index.html` fallback so deep
+links such as `/sessions/new` survive a refresh.
+
+## CI
+
+`.github/workflows/ci.yml` runs on every push to `main` and on pull requests. It
+typechecks, runs the unit tests, builds the production bundle (uploaded as the `dist`
+artifact), then builds the Docker image and smoke-tests that the container serves the app
+and falls back to `index.html` on a deep link. The image is not pushed anywhere.
+
 ## Routes
 
 | Route                | Page                                                                   |
