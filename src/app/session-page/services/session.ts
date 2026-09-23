@@ -12,7 +12,7 @@ export class SessionService {
   readonly all = this.sessions.asReadonly();
   readonly count = computed(() => this.sessions().length);
 
-  /** Matches on title, track and speaker names; an empty term returns everything. */
+  /** Matches on title, track and speaker name or email; an empty term returns everything. */
   search(term: string | undefined): Session[] {
     const needle = (term ?? '').trim().toLowerCase();
     if (!needle) {
@@ -36,7 +36,8 @@ export class SessionService {
   }
 
   create(draft: SessionDraft): Session {
-    const session: Session = { id: this.nextId(), ...draft };
+    // id goes last so a stray id on the draft cannot replace the generated one.
+    const session: Session = { ...draft, id: this.nextId() };
     this.sessions.update((sessions) => [...sessions, session]);
     return session;
   }
@@ -48,7 +49,7 @@ export class SessionService {
     }
 
     this.sessions.update((sessions) =>
-      sessions.map((session) => (session.id === id ? { id, ...draft } : session)),
+      sessions.map((session) => (session.id === id ? { ...draft, id } : session)),
     );
     return true;
   }

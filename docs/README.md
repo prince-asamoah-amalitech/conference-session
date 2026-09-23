@@ -94,9 +94,18 @@ In-memory, signal-backed, seeded from `session-page/data/session.data.ts`. The A
 | `count`             | Computed session count                                                                              |
 | `search(term)`      | Case-insensitive match on title, track, and speaker name or email; an empty term returns everything |
 | `getById(id)`       | One session, or `undefined`                                                                         |
-| `create(draft)`     | Appends a session with a generated `s-NNN` id                                                       |
-| `update(id, draft)` | Replaces the editable fields; `false` when the id is unknown                                        |
-| `remove(id)`        | Deletes a session                                                                                   |
+| `create(draft)`     | Appends a session with a generated `s-NNN` id and returns it                                        |
+| `update(id, draft)` | Replaces the editable fields in place; `false` (and no change) when the id is unknown               |
+| `remove(id)`        | Deletes a session; an unknown id is a no-op                                                         |
+
+Every mutation replaces the array rather than editing it, so the seed data is never
+modified. Ids are one past the highest numeric id currently held, zero-padded to three
+digits and widening past `s-999`. The id is always the service's: an `id` field smuggled in
+on a draft is ignored by both `create` and `update`.
+
+> **Known limitation:** because ids come from the highest id _currently_ present, removing
+> the newest session and then creating one reissues the removed id. Nothing in the app
+> calls `remove`, so this cannot happen through the UI today.
 
 ## Design handoffs
 
