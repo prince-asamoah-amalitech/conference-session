@@ -20,4 +20,12 @@ describe('PageNotFound', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('says the page was not found', () => {
+    expect(fixture.nativeElement.querySelector('h1').textContent).toContain('Page not found');
+  });
+
+  it('links back to the session list', () => {
+    expect(fixture.nativeElement.querySelector('a').getAttribute('href')).toBe('/sessions');
+  });
 });

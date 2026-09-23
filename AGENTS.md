@@ -112,6 +112,29 @@ which tracks the control's own `events` stream and gives the computed something 
 depend on. The same applies in tests — mutating a plain field on a test host will not
 re-render; drive it with a `signal()`.
 
+## Testing
+
+Vitest globals (`describe`, `it`, `expect`, `vi`) are available without imports. What the
+suite covers is summarised in `README.md`; these are the traps that have already bitten:
+
+- **`isolate: false`.** Spec files share one module graph, so `sessionDataList` is the same
+  array in every file. Never mutate it; `SessionService` must always replace its array, and
+  `session.spec.ts` asserts that it does. TestBed still gives each test a fresh service.
+- **Await `fixture.whenStable()` after every DOM event or `setInput`.** The app is zoneless
+  (see below), so nothing re-renders on its own between a dispatch and an assertion.
+- **Don't return a pending promise from an `async` helper.** `async` unwraps it, so the
+  caller's `await` blocks on it. A guarded navigation waits on the dialog, and the test
+  deadlocks. Wrap it (`return { navigation }`) as `app.routes.spec.ts` does.
+- **Stub `Router.navigate`** (`vi.spyOn(router, 'navigate').mockResolvedValue(true)`) in
+  component specs that use `provideRouter([])`. Use `RouterTestingHarness` with the real
+  `routes` only when the test is about routing itself.
+- **Radio values aren't in the DOM.** `[value]` on a `formControl` radio is a directive
+  input, so `input.value` reads `"on"`. Assert on `.ui-segment-active` instead.
+- **Protected form members.** Test `SessionFormBase` through a small subclass that
+  re-exposes them (`session-form.base.spec.ts`) rather than casting to `any`.
+- **`controlState` / `toObservable` subscribe from an effect.** Call `TestBed.tick()` after
+  creating one, and after swapping the control signal, before emitting control events.
+
 ## Keep `docs/README.md` current
 
 `docs/README.md` is the functional spec, and it is expected to describe the app as it

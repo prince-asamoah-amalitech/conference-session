@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { Router, provideRouter, withComponentInputBinding } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from './app.routes';
 import { SessionService } from './session-page/services/session';
@@ -49,5 +49,74 @@ describe('app routes', () => {
   it('shows page not found for an unknown url', async () => {
     const element = await navigateTo('/nope');
     expect(element.textContent).toContain('Page not found');
+  });
+
+  it('redirects / to /sessions', async () => {
+    await navigateTo('/');
+    expect(TestBed.inject(Router).url).toBe('/sessions');
+  });
+
+  it('shows the in-page not-found state for an unknown session id', async () => {
+    const element = await navigateTo('/sessions/s-999');
+    expect(element.textContent).toContain('Session not found');
+  });
+
+  describe('unsaved changes', () => {
+    async function dirtyCreateForm() {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/sessions/new');
+
+      const title =
+        harness.routeNativeElement!.querySelector<HTMLInputElement>('input[name="title"]')!;
+      title.value = 'Draft';
+      title.dispatchEvent(new Event('input'));
+      await harness.fixture.whenStable();
+      return harness;
+    }
+
+    /**
+     * Starts a navigation that the guard will hold open, and waits for its dialog. The
+     * pending navigation is wrapped so that awaiting this helper does not await it too.
+     */
+    async function leaveTowards(harness: RouterTestingHarness, url: string) {
+      const navigation = TestBed.inject(Router).navigateByUrl(url);
+      await vi.waitFor(() => {
+        expect(harness.fixture.nativeElement.querySelector('[role="alertdialog"]')).not.toBeNull();
+      });
+      return { navigation };
+    }
+
+    function answer(harness: RouterTestingHarness, label: string) {
+      Array.from<HTMLButtonElement>(harness.fixture.nativeElement.querySelectorAll('button'))
+        .find((b) => b.textContent?.trim() === label)!
+        .click();
+    }
+
+    it('holds navigation until the user answers, then stays', async () => {
+      const harness = await dirtyCreateForm();
+      const { navigation } = await leaveTowards(harness, '/sessions');
+      expect(TestBed.inject(Router).url).toBe('/sessions/new');
+
+      answer(harness, 'Stay on page');
+      await expect(navigation).resolves.toBe(false);
+      expect(TestBed.inject(Router).url).toBe('/sessions/new');
+    });
+
+    it('leaves once the user discards', async () => {
+      const harness = await dirtyCreateForm();
+      const { navigation } = await leaveTowards(harness, '/sessions');
+
+      answer(harness, 'Discard and leave');
+      await expect(navigation).resolves.toBe(true);
+      expect(TestBed.inject(Router).url).toBe('/sessions');
+    });
+
+    it('does not prompt when leaving an untouched form', async () => {
+      const harness = await RouterTestingHarness.create();
+      await harness.navigateByUrl('/sessions/new');
+      await harness.navigateByUrl('/sessions');
+
+      expect(TestBed.inject(Router).url).toBe('/sessions');
+    });
   });
 });
