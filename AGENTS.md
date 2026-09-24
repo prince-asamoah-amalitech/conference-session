@@ -132,6 +132,12 @@ suite covers is summarised in `README.md`; these are the traps that have already
   input, so `input.value` reads `"on"`. Assert on `.ui-segment-active` instead.
 - **Protected form members.** Test `SessionFormBase` through a small subclass that
   re-exposes them (`session-form.base.spec.ts`) rather than casting to `any`.
+- **Back/forward in tests.** `TestBed.createComponent` skips the router's bootstrap, so
+  call `router.setUpLocationChangeListener()` before `location.back()` will navigate. The
+  router then handles `popstate` from a `setTimeout`, so wait with
+  `vi.waitFor(() => expect(router.url)...)`, not `whenStable()`.
+- **Never `whenStable()` while a guard holds a navigation.** The pending navigation keeps
+  the app unstable until the dialog is answered; `vi.waitFor` the dialog instead.
 - **`controlState` / `toObservable` subscribe from an effect.** Call `TestBed.tick()` after
   creating one, and after swapping the control signal, before emitting control events.
 

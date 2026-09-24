@@ -53,14 +53,19 @@ Every component, directive, service, guard and helper has a `.spec.ts` beside it
 seed data and route tables are covered through their callers), and the suite covers each
 layer on its own and then end to end:
 
-| Layer                                     | What the specs pin down                                                                                                                                                                |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `SessionService`                          | Seed state; search on every field, case and whitespace; id generation (sequential, zero-padded, past `s-999`); update/remove on known and unknown ids; immutability; signal reactivity |
-| `SessionFormBase`, `toLocalInput`/`toIso` | Every validation rule at its boundary, the speakers `FormArray`, `patchFrom`/`toDraft` round-trip and trimming, the unsaved-changes promise                                            |
-| `unsavedChangesGuard`                     | Passes the component's answer — boolean or pending promise — straight to the router                                                                                                    |
-| Page components                           | Create/edit submit (valid and invalid), error messages, adding and removing speakers, the dialog's three exits, list ordering, search-to-URL, empty and not-found states               |
-| `shared/ui/`                              | Class recipes, two-way control binding, error/`aria-*` wiring, and `controlState` tracking a control from a `computed()`                                                               |
-| `app.routes.spec.ts`                      | Real router: redirect, lazy routes, `?q=` binding, Not Found, and the guard holding a navigation open until the dialog is answered                                                     |
+| Layer                                     | What the specs pin down                                                                                                                                                                  |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SessionService`                          | Seed state; search on every field, case and whitespace; id generation (sequential, zero-padded, past `s-999`); update/remove on known and unknown ids; immutability; signal reactivity   |
+| `SessionFormBase`, `toLocalInput`/`toIso` | Every validation rule at its boundary, the speakers `FormArray`, `patchFrom`/`toDraft` round-trip and trimming, the unsaved-changes promise                                              |
+| `unsavedChangesGuard`                     | Passes the component's answer — boolean or pending promise — straight to the router                                                                                                      |
+| Page components                           | Create/edit submit (valid and invalid), error messages, adding and removing speakers, the dialog's three exits, list ordering, search-to-URL, empty and not-found states                 |
+| `shared/ui/`                              | Class recipes, two-way control binding, error/`aria-*` wiring, and `controlState` tracking a control from a `computed()`                                                                 |
+| `app.routes.spec.ts`                      | Real router: redirect, lazy routes, `?q=` binding, Not Found, and the guard holding a navigation open until the dialog is answered                                                       |
+| `app.integration.spec.ts`                 | Whole-app user journeys through the real `App` shell and `appConfig`: search and shared links, history, create → list, edit → list, the unsaved-changes prompt on links and browser back |
+
+`app.integration.spec.ts` is the one to extend when a change spans pages. It fakes only the
+browser location and drives everything else through the DOM, so a journey there fails if
+any layer (routes, lazy loading, providers, service, guard) stops working with the others.
 
 Pitfalls worth knowing before writing a new spec are listed under _Testing_ in `AGENTS.md`.
 
